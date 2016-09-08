@@ -16,9 +16,9 @@ limitations under the License.
 
 */
 
-package com.akexorcist.googledirection;
+package beep_beep.ca.beep_beep.GoogleMaps;
 
-import com.akexorcist.googledirection.model.Direction;
+import beep_beep.ca.beep_beep.GoogleMaps.model.Direction;
 
 /**
  * Created by Akexorcist on 11/29/15 AD.

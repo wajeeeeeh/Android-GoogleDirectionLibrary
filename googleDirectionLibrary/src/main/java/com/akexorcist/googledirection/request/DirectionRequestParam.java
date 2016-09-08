@@ -16,9 +16,12 @@ limitations under the License.
 
 */
 
-package com.akexorcist.googledirection.request;
+package beep_beep.ca.beep_beep.GoogleMaps.request;
 
 import com.google.android.gms.maps.model.LatLng;
+
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by Akexorcist on 11/29/15 AD.
@@ -28,6 +31,8 @@ public class DirectionRequestParam {
     LatLng destination;
     String transportMode;
     String departureTime;
+
+    List<LatLng> waypoints;
     String language;
     String unit;
     String avoid;
@@ -35,6 +40,22 @@ public class DirectionRequestParam {
     boolean alternatives;
     String apiKey;
 
+    public String getWaypoints() {
+        String stringWaypoints = "";
+        Iterator<LatLng> i = waypoints.listIterator();
+        while(i.hasNext())
+        {
+            LatLng waypoint = i.next();
+            stringWaypoints = waypoint.latitude+","+waypoint.longitude+"|"+stringWaypoints;
+        }
+
+        return stringWaypoints;
+    }
+
+    public DirectionRequestParam setWaypoints(List<LatLng> waypoints) {
+        this.waypoints = waypoints;
+        return this;
+    }
 
     public LatLng getOrigin() {
         return origin;

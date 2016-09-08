@@ -16,7 +16,7 @@ limitations under the License.
 
 */
 
-package com.akexorcist.googledirection.request;
+package beep_beep.ca.beep_beep.GoogleMaps.request;
 
 import com.google.android.gms.maps.model.LatLng;
 

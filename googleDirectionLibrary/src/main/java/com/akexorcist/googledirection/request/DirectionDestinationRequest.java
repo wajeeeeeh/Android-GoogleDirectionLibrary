@@ -16,9 +16,11 @@ limitations under the License.
 
 */
 
-package com.akexorcist.googledirection.request;
+package beep_beep.ca.beep_beep.GoogleMaps.request;
 
 import com.google.android.gms.maps.model.LatLng;
+
+import java.util.List;
 
 /**
  * Created by Akexorcist on 11/29/15 AD.
@@ -32,7 +34,7 @@ public class DirectionDestinationRequest {
         this.origin = origin;
     }
 
-    public DirectionRequest to(LatLng destination) {
-        return new DirectionRequest(apiKey, origin, destination);
+    public DirectionRequest to(LatLng destination, List<LatLng> waypoints) {
+        return new DirectionRequest(apiKey, origin, destination, waypoints);
     }
 }

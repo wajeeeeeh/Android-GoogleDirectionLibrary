@@ -1,4 +1,4 @@
-package com.akexorcist.googledirection.constant;
+package beep_beep.ca.beep_beep.GoogleMaps.constant;
 
 /**
  * Created by Akexorcist on 12/5/15 AD.

@@ -16,13 +16,15 @@ limitations under the License.
 
 */
 
-package com.akexorcist.googledirection.request;
+package beep_beep.ca.beep_beep.GoogleMaps.request;
 
-import com.akexorcist.googledirection.DirectionCallback;
-import com.akexorcist.googledirection.model.Direction;
-import com.akexorcist.googledirection.network.DirectionAndPlaceConnection;
+import beep_beep.ca.beep_beep.GoogleMaps.DirectionCallback;
+import beep_beep.ca.beep_beep.GoogleMaps.model.Direction;
+import beep_beep.ca.beep_beep.GoogleMaps.network.DirectionAndPlaceConnection;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.Gson;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,8 +36,13 @@ import retrofit2.Response;
 public class DirectionRequest {
     protected DirectionRequestParam param;
 
-    public DirectionRequest(String apiKey, LatLng origin, LatLng destination) {
-        param = new DirectionRequestParam().setApiKey(apiKey).setOrigin(origin).setDestination(destination);
+    public DirectionRequest(String apiKey, LatLng origin, LatLng destination, List<LatLng> waypoints) {
+        param = new DirectionRequestParam().setApiKey(apiKey).setOrigin(origin).setDestination(destination).setWaypoints(waypoints);
+    }
+
+    public DirectionRequest waypoints(List<LatLng> waypoints){
+        param.setWaypoints(waypoints);
+        return this;
     }
 
     public DirectionRequest transportMode(String transportMode) {
@@ -92,6 +99,7 @@ public class DirectionRequest {
                 .createService()
                 .getDirection(param.getOrigin().latitude + "," + param.getOrigin().longitude,
                         param.getDestination().latitude + "," + param.getDestination().longitude,
+                        param.getWaypoints(),
                         param.getTransportMode(),
                         param.getDepartureTime(),
                         param.getLanguage(),

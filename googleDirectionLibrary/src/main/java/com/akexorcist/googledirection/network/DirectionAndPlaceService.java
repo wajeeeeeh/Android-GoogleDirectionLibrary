@@ -16,10 +16,10 @@ limitations under the License.
 
 */
 
-package com.akexorcist.googledirection.network;
+package beep_beep.ca.beep_beep.GoogleMaps.network;
 
-import com.akexorcist.googledirection.constant.DirectionUrl;
-import com.akexorcist.googledirection.model.Direction;
+import beep_beep.ca.beep_beep.GoogleMaps.constant.DirectionUrl;
+import beep_beep.ca.beep_beep.GoogleMaps.model.Direction;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -33,6 +33,7 @@ public interface DirectionAndPlaceService {
     @GET(DirectionUrl.DIRECTION_API_URL)
     Call<Direction> getDirection(@Query("origin") String origin,
                                  @Query("destination") String destination,
+                                 @Query("waypoints") String waypoints,
                                  @Query("mode") String transportMode,
                                  @Query("departure_time") String departureTime,
                                  @Query("language") String language,

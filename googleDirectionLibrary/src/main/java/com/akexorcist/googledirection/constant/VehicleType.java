@@ -16,7 +16,7 @@ limitations under the License.
 
 */
 
-package com.akexorcist.googledirection.constant;
+package beep_beep.ca.beep_beep.GoogleMaps.constant;
 
 /**
  * Created by Akexorcist on 11/29/15 AD.

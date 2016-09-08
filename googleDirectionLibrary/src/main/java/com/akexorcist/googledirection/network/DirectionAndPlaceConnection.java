@@ -16,11 +16,13 @@ limitations under the License.
 
 */
 
-package com.akexorcist.googledirection.network;
+package beep_beep.ca.beep_beep.GoogleMaps.network;
 
-import com.akexorcist.googledirection.constant.DirectionUrl;
+import beep_beep.ca.beep_beep.GoogleMaps.constant.DirectionUrl;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -28,6 +30,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class DirectionAndPlaceConnection {
     private static DirectionAndPlaceConnection connection;
+    private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
     public static DirectionAndPlaceConnection getInstance() {
         if (connection == null) {
@@ -38,12 +41,21 @@ public class DirectionAndPlaceConnection {
 
     private DirectionAndPlaceService service;
 
+    private static Retrofit.Builder builder = new Retrofit
+            .Builder()
+            .baseUrl(DirectionUrl.MAPS_API_URL)
+            .addConverterFactory(GsonConverterFactory.create());
+
     public DirectionAndPlaceService createService() {
         if (service == null) {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(DirectionUrl.MAPS_API_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
+
+            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+
+            httpClient.addInterceptor(logging);
+            Retrofit retrofit = builder.client(httpClient.build()).build();
             service = retrofit.create(DirectionAndPlaceService.class);
         }
         return service;
